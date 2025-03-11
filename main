@@ -1,12 +1,12 @@
 create table Movie (
-	MovieID			INT,
-    Title			VARCHAR(50),
+    MovieID		INT,
+    Title		VARCHAR(50),
     ReleaseDate		INT,
     MovingRating	DECIMAL(3,2),
     AudienceRec		VARCHAR(10),
-    ActorID			VARCHAR(5),
+    ActorID		VARCHAR(5),
     DirectorID		VARCHAR(5),
-    GenreID			VARCHAR(5),
+    GenreID		VARCHAR(5),
     primary key (MovieID)
 );
 
