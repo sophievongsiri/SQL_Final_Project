@@ -1,0 +1,35 @@
+#Return movie title from specific year
+select M.Title
+from Movie as M
+where M.ReleaseDate = 2020;
+
+#Return movie title with specific actor
+select M.Title
+from Movie as M
+join Actor as A on M.ActorID = A.ActorID
+where A.Actor1 = 'Millie Bobby Brown' 
+   or A.Actor2 = 'Millie Bobby Brown' 
+   or A.Actor3 = 'Millie Bobby Brown';
+   
+   
+#Return movie with highest rating in each genre
+select M.Title, G.Genre, max(M.MovieRating) as MovieRating
+from Movie as M
+join Genre as G on M.GenreID = G.GenreID
+group by G.Genre;
+
+#Return movies that share a director
+select M.Title, D.Director
+from Movie as M, Director as D
+where M.DirectorID = D.DirectorID and D.Director in (
+	select D.Director
+    from Director as D
+    join Movie as M on M.DirectorID = D.DirectorID
+    group by D.Director
+    having count(M.MovieID) > 1
+);
+
+#Return oldest movies from each audience recommendation
+select M.Title, M.AudienceRec, min(ReleaseYear)
+from Movie as M
+group by M.AudienceRec
