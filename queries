@@ -33,3 +33,50 @@ where M.DirectorID = D.DirectorID and D.Director in (
 select M.Title, M.AudienceRec, min(ReleaseYear)
 from Movie as M
 group by M.AudienceRec
+
+-- max and min (newest and oldest movies)
+SELECT Title, ReleaseYear
+FROM Movie
+WHERE ReleaseYear = (SELECT MIN(ReleaseYear) FROM Movie)
+   OR ReleaseYear = (SELECT MAX(ReleaseYear) FROM Movie);
+   
+-- directors with the highest avg movie ratings   
+SELECT D.DirectorName, ROUND(AVG(M.MovieRating), 2) AS AvgRating, COUNT(M.MovieID) AS MovieCount
+FROM Movie M
+JOIN Director D ON M.DirectorID = D.DirectorID
+GROUP BY D.DirectorName
+HAVING COUNT(M.MovieID) >= 3
+ORDER BY AvgRating DESC
+LIMIT 10;
+
+-- most frequent actor in the database
+SELECT ActorName, COUNT(*) AS MovieCount
+FROM (
+    SELECT Actor1 AS ActorName FROM Actor
+    UNION ALL
+    SELECT Actor2 FROM Actor
+    UNION ALL
+    SELECT Actor3 FROM Actor
+) AS AllActors
+GROUP BY ActorName
+ORDER BY MovieCount DESC
+LIMIT 1;
+
+-- actors in the most high-rated movies
+SELECT A.ActorName, COUNT(M.MovieID) AS HighRatedMovies
+FROM Movie M
+JOIN MovieActor MA ON M.MovieID = MA.MovieID
+JOIN Actor A ON MA.ActorID = A.ActorID
+WHERE M.MovieRating > 8.0
+GROUP BY A.ActorName
+ORDER BY HighRatedMovies DESC
+LIMIT 10;
+
+-- most popular genre among highly rated movies
+SELECT G.Genre, COUNT(M.MovieID) AS HighRatedCount
+FROM Movie M
+JOIN Genre G ON M.GenreID = G.GenreID
+WHERE M.MovieRating > 8.0
+GROUP BY G.Genre
+ORDER BY HighRatedCount DESC
+LIMIT 1;
