@@ -553,5 +553,8 @@ LIMIT 1;
 --Return movies that were released from a specifc year and later
 --Return movies that were released before a specicif year
 
+--DELETE (CRUD)--Deletion will delete all records related to a movie: including actors/directors/genres,etc. 
+
+
 
     
