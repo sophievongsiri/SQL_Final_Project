@@ -547,5 +547,11 @@ ORDER BY HighRatedCount DESC
 LIMIT 1;
 
 
+--Return movies with a specific MovieRating and above (example will be with <= 5.0)
+--Return movies with specific AudienceRec
+--Return all the info on a specific movieID (join)
+--Return movies that were released from a specifc year and later
+--Return movies that were released before a specicif year
+
 
     
