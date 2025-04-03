@@ -81,8 +81,60 @@ GROUP BY G.Genre
 ORDER BY HighRatedCount DESC
 LIMIT 1;
 
-~Return movies with a specific MovieRating and above (example will be with <= 5.0)
-~Return movies with specific AudienceRec
-~Return all the info on a specific movieID (join)
-~Return movies that were released from a specifc year and later
-~Return movies that were released before a specicif year
+~Return movies with specific Genre
+SELECT M.Title
+FROM Movie M
+JOIN Genre G ON M.GenreID = G.GenreID
+WHERE G.Genre = 'Comedy'
+ORDER BY M.Title
+
+~Return movies that were released from a specifc year and later (ordered in ascending order from oldest to newest release on or after 2000) (NOTE: to order it in descending order just change ASC to DESC)
+SELECT M.Title, M.ReleaseYear
+FROM Movie M
+WHERE ReleaseYear >= 2000
+ORDER BY ReleaseYear ASC;
+
+~Return all the info on a specific movieID (left join, nested query) 
+SELECT
+   M.MovieID, M.Title, M.ReleaseYear, M.MovieRating, M.AudienceRec,
+   A.Actor1, A.Actor2, A.Actor3,
+   D.Director
+   G.Genre
+FROM Movie M
+LEFT JOIN Actor A ON M.ActorID = A.ActorID
+LEFT JOIN Director D ON M.DirectorID = D.DirectorID
+LEFT JOIN Genre G ON M.GenreID = G.GenreID
+WHERE M.Movie ID =(
+  SELECT MovieID
+  FROM Movie
+  WHERE MovieID = 11
+);
+
+~Return movies with a specific MovieRating and above (example will be with <= 5.0) and with a specific audience rec(TV-MA)
+SELECT
+   M.Title, M.ReleaseYear, M.MovieRating, M.AudienceRec
+FROM Movie M
+WHERE M.MovieID IN (
+  SELECT MovieID
+  FROM Movie
+  WHERE MovieRating >= 5.0
+  AND AudienceRec = 'TV-MA'
+)
+ORDER BY M.MovieRating DESC
+
+~Return movies that were released before a specicif year and with a specific genre and audienceRec
+SELECT M.Title, M.ReleaseYear, M.MovieRating, M.AudienceRec, G.Genre
+FROM Movie M
+JOIN Genre G ON M.GenreID = G.GenreID
+WHERE M.MovieID IN (
+  SELECT MovieID
+  FROM Movie
+  WHERE ReleaseYear < 2010
+  AND AudienceRec = 'R'
+  AND GenreID = (
+    SELECT GenreID
+    FROM Genre
+    WHERE Genre = 'Romance' 
+  )
+)
+ORDER BY M.ReleaseYear ASC;
