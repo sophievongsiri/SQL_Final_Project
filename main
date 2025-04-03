@@ -1,5 +1,5 @@
 create table Movie (
-    MovieID			INT,
+    MovieID			INT PRIMARY KEY,
     Title			VARCHAR(50),
     ReleaseYear		INT,
     MovieRating		DECIMAL(3,2),
@@ -7,27 +7,26 @@ create table Movie (
     ActorID			VARCHAR(5),
     DirectorID		VARCHAR(5),
     GenreID			VARCHAR(5),
-    primary key (MovieID)
+    FOREIGN KEY (ActorID) REFENCES Actor(ActorID),
+    FOREIGN KEY (DirectorID) REFENCES Director(DirectorID),
+    FOREIGN KEY (GenreID) REFENCES Genre(GenreID)
 );
 
 create table Actor (
-    ActorID		VARCHAR(5),
+    ActorID		VARCHAR(5) PRIMARY KEY,
     Actor1		VARCHAR(30),
     Actor2		VARCHAR(30),
-    Actor3		VARCHAR(30),
-    primary key (ActorID)
+    Actor3		VARCHAR(30)
 );
 
 create table Director (
-    DirectorID	VARCHAR(5),
-    Director	VARCHAR(30),
-    primary key (DirectorID)
+    DirectorID	VARCHAR(5) PRIMARY KEY,
+    Director	VARCHAR(30)
 );
 
 create table Genre (
-    GenreID		VARCHAR(5),
-    Genre		VARCHAR(15),
-    primary key (GenreID)
+    GenreID		VARCHAR(5) PRIMARY KEY,
+    Genre		VARCHAR(15)
 );
 
 insert into Movie values
@@ -605,7 +604,31 @@ WHERE M.MovieID IN (
 ORDER BY M.ReleaseYear ASC;
 
 --DELETE (CRUD)--Deletion will delete all records related to a movie: including actors/directors/genres,etc. 
+For this I would implement an ON DELETE CASCADE, since we would delete all relavant data when removing a movieTitle,
+we would change the table containing the foreign keys like this:
+create table Movie (
+    MovieID			INT PRIMARY KEY,
+    Title			VARCHAR(50),
+    ReleaseYear		INT,
+    MovieRating		DECIMAL(3,2),
+    AudienceRec		VARCHAR(10),
+    ActorID			VARCHAR(5),
+    DirectorID		VARCHAR(5),
+    GenreID			VARCHAR(5),
+    FOREIGN KEY (ActorID) REFENCES Actor(ActorID)
+	ON DELETE CASCADE,
+    FOREIGN KEY (DirectorID) REFENCES Director(DirectorID)
+	ON DELETE CASCADE,
+    FOREIGN KEY (GenreID) REFENCES Genre(GenreID)
+	ON DELETE CASCADE
+);
+and then this would be in the query: (creates a delte cascade that deletes all references to that movie)
+DELETE FROM Movie WHERE MovieID = 101;
 
-
-
+--IF we want to Delete just one table: table in example is actor
+DROP TABLE Actor;
+and then would need to edit to drop foreign key column and foreign key in Movie Table, this would be and UPDATE/ALTER, and would be done 
+only if they are still there after DROP TABLE. and would look something like this:
+ALTER TABLE Movie DROP FOREIGN KEY ActorID;
+ALTER TABLE Movie DROP COLUMN ActorID;
     
