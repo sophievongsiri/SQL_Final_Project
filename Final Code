@@ -1,0 +1,617 @@
+CREATE TABLE Movie (
+    MovieID         INT PRIMARY KEY,
+    Title           VARCHAR(50),
+    ReleaseYear     INT,
+    MovieRating     DECIMAL(3,2),
+    AudienceRec     VARCHAR(10)
+);
+
+CREATE TABLE Genre (
+    GenreID     VARCHAR(5) PRIMARY KEY,
+    Genre       VARCHAR(15),
+    MovieID     INT,
+    FOREIGN KEY (MovieID) REFERENCES Movie(MovieID) ON DELETE CASCADE
+);
+
+CREATE TABLE Actor (
+    ActorID     VARCHAR(5) PRIMARY KEY,
+    Actor1      VARCHAR(30),
+    Actor2      VARCHAR(30),
+    Actor3      VARCHAR(30),
+    MovieID     INT,
+    FOREIGN KEY (MovieID) REFERENCES Movie(MovieID) ON DELETE CASCADE
+);
+
+CREATE TABLE Director (
+    DirectorID  VARCHAR(5) PRIMARY KEY,
+    Director    VARCHAR(30),
+    MovieID     INT,
+    FOREIGN KEY (MovieID) REFERENCES Movie(MovieID) ON DELETE CASCADE
+);
+
+
+drop table Movie;
+drop table Actor;
+drop table Director;
+drop table Genre;
+
+INSERT INTO Movie VALUES
+(1, "A Simple Favor", 2018, 6.8, "R"),
+(2, "A Madea Homecoming", 2020, 5.7, "TV-MA"),
+(3, "Bad Boys", 1995, 6.8, "R"),
+(4, "Bad Boys II", 2003, 6.6, "R"),
+(5, "Big Time Movie", 2012, 6.2, "PG"),
+(6, "Carry-On", 2024, 6.5, "PG-13"),
+(7, "Clifford the Big Red Dog", 2021, 5.9, "PG"),
+(8, "Dangerous Lies", 2020, 5.4, "TV-14"),
+(9, "Dumplin", 2018, 6.5, "PG-13"),
+(10, "Dune: Part One", 2021, 8.0, "PG-13"),
+(11, "Dune: Part Two", 2024, 8.5, "PG-13"),
+(12, "First Daughter", 2004, 5.2, "PG"),
+(13, "Friends with Benefits", 2011, 6.5, "R"),
+(14, "Friends with Money", 2006, 5.8, "R"),
+(15, "Hanna", 2011, 6.7, "PG-13"),
+(16, "Heroin(e)", 2017, 6.8, "TV-14"),
+(17, "I Am Mother", 2019, 6.7, "PG"),
+(18, "Hustle", 2022, 7.3, "R"),
+(19, "Hubie Halloween", 2020, 5.3, "PG-13"),
+(20, "It Ends with Us", 2024, 6.4, "PG-13"),
+(21, "I Am Woman", 2019, 6.6, "TV-MA"),
+(22, "Despicable Me", 2010, 7.6, "PG"),
+(23, "Despicable Me 2", 2013, 7.3, "PG"),
+(24, "Definitely, Maybe", 2008, 7.1, "PG-13"),
+(25, "Death Note", 2017, 4.5, "TV-MA"),
+(26, "Easy A", 2010, 7.0, "PG-13"),
+(27, "Enola Holmes", 2020, 6.6, "PG-13"),
+(28, "Enola Holmes 2", 2022, 6.8, "PG-13"),
+(29, "Do Revenge", 2022, 6.3, "TV-MA"),
+(30, "Ella Enchanted", 2004, 6.3, "PG"),
+(31, "Descendant", 2022, 7.1, "PG"),
+(32, "Goosebumps", 2015, 6.3, "PG"),
+(33, "Chasing Coral", 2017, 8, "PG"),
+(34, "Ferris Bueller's Day Off", 1986, 7.8, "PG-13"),
+(35, "Jack Whitehall: At large", 2017, 6.9, "TV-MA"),
+(36, "Jack Whitehall: Christmas with my father", 2019, 6.0, "TV-MA"),
+(37, "John Mulaney: Baby J", 2023, 7.5, "TV-MA"),
+(38, "John Mulaney: Kid Gorgeous at Radio City", 2018, 7.9, "TV-MA"),
+(39, "John Mulaney: New in Town", 2012, 8.2, "TV-MA"),
+(40, "John Mulaney: The comeback kid", 2015, 7.9, "TV-MA"),
+(41, "Kate", 2021, 6.3, "R"),
+(42, "King Kong", 2005, 7.2, "R"),
+(43, "Land of Bad", 2024, 6.6, "R"),
+(44, "Leave the world behind", 2023, 6.4, "R"),
+(45, "Lift", 2024, 5.5, "PG-13"),
+(46, "Little Evil", 2017, 5.7, "TV-MA"),
+(47, "London has Fallen", 2016, 5.9, "R"),
+(48, "Lonely Planet", 2024, 5.7, "R"),
+(49, "Ma", 2019, 5.6, "R"),
+(50, "Mad Max: Fury Road", 2015, 8.1, "R"),
+(51, "Mary", 2024, 5.2, "TV-14"),
+(52, "Message from the King", 2016, 6.4, "TV-MA"),
+(53, "Migration", 2023, 6.6, "PG"),
+(54, "Mile 22", 2018, 6.1, "R"),
+(55, "Minions", 2015, 6.4, "PG"),
+(56, "Minions: The rise of Gru", 2022, 6.5, "PG"),
+(57, "Nobody sleeps in the woods tonight", 2020, 4.9, "TV-MA"),
+(58, "Notting Hill", 1999, 7.2, "PG-13"),
+(59, "Persuasion", 2022, 5.8, "PG"),
+(60, "Peter Rabbit", 2018, 6.6, "PG"),
+(61, "Pride and Prejudice", 2005, 7.8, "PG"),
+(62, "Public Enemies", 2009, 6.9, "R"),
+(63, "Race", 2016, 7.1, "PG-13"),
+(64, "Rambo", 2008, 7.0, "R"),
+(65, "Rebel Ridge", 2024, 6.8, "TV-MA"),
+(66, "Red Notice", 2021, 6.3, "PG-13"),
+(67, "Richie Rich", 1994, 5.4, "PG"),
+(68, "Schindler's List", 1993, 9.0, "R"),
+(69, "Scooby-Doo", 2002, 5.3, "PG"),
+(70, "Scooby-Doo 2: Monsters Unleased", 2004, 5.3, "PG"),
+(71, "Secret Obsession", 2019, 4.5, "TV-14"),
+(72, "Senna", 2010, 8.5, "PG-13"),
+(73, "Space Jam", 1996, 6.5, "PG"),
+(74, "Spider-Man 3", 2007, 6.3, "PG-13"),
+(75, "Superbad", 2007, 7.6, "R"),
+(76, "Takers", 2010, 6.2, "PG-13"),
+(77, "The Autopsy of Jane Doe", 2016, 6.8, "R"),
+(78, "The Babadook", 2014, 6.5, "PG-13"),
+(79, "The Christmas Chronicles", 2018, 7.1, "PG"),
+(80, "The Fast and the Furious", 2001, 6.7, "TV-MA"),
+(81, "The Fast and the Furious: Tokyo Drift", 2006, 6.2, "R"),
+(82, "The Karate Kid", 1984, 7.2, "PG"),
+(83, "The Karate Kid Part II", 1986, 6.0, "PG"),
+(84, "The Karate Kid Part III", 1989, 5.2, "PG"),
+(85, "The Kindergarten Teacher", 2018, 6.7, "R"),
+(86, "The Prince of Egypt", 1998, 7.1, "PG"),
+(87, "The Trial of the Chicago 7", 2020, 8.0, "R"),
+(88, "To All the Boys I've Loved Before", 2018, 7.2, "TV-14"),
+(89, "To All the Boys: P.S. I Still Love You", 2020, 6.0, "TV-14"),
+(90, "Wanted", 2008, 6.4, "PG-13"),
+(91, "What Happened to Monday", 2017, 6.9, "TV-MA"),
+(92, "Your Son", 2018, 6.1, "TV-MA"),
+(93, "Zero", 2018, 5.5, "TV-14"),
+(94, "Zion", 2018, 7.2, "PG"),
+(95, "Zombieland", 2009, 7.6, "R"),
+(96, "Zookeeper", 2011, 5.2, "PG"),
+(97, "This Christmas", 2007, 6.3, "PG-13"),
+(98, "The Week Of", 2018, 5.1, "TV-14"),
+(99, "The White Helmets", 2016, 7.5, "TV-14"),
+(100, "The Ritual", 2017, 6.3, "TV-MA"),
+(101, "The Silence", 2019, 5.4, "PG-13");
+
+INSERT INTO Genre VALUES
+("G1", "Comedy", 1),
+("G2", "Drama", 2),
+("G3", "Thriller", 3),
+("G4", "Thriller", 4),
+("G5", "Comedy", 5),
+("G6", "Action", 6),
+("G7", "Comedy", 7),
+("G8", "Thriller", 8),
+("G9", "Comedy", 9),
+("G10", "Action", 10),
+("G11", "Action", 11),
+("G12", "Romantic Comedy", 12),
+("G13", "Romantic Comedy", 13),
+("G14", "Comedy", 14),
+("G15", "Action", 15),
+("G16", "Documentary", 16),
+("G17", "Drama", 17),
+("G18", "Comedy", 18),
+("G19", "Comedy", 19),
+("G20", "Drama", 20),
+("G21", "Biography", 21),
+("G22", "Adventure", 22),
+("G23", "Adventure", 23),
+("G24", "Romantic Comedy", 24),
+("G25", "Horror", 25),
+("G26", "Romantic Comedy", 26),
+("G27", "Adventure", 27),
+("G28", "Adventure", 28),
+("G29", "Comedy", 29),
+("G30", "Comedy", 30),
+("G31", "Documentary", 31),
+("G32", "Adventure", 32),
+("G33", "Documentary", 33),
+("G34", "Comedy", 34),
+("G35", "Comedy", 35),
+("G36", "Comedy", 36),
+("G37", "Comedy", 37),
+("G38", "Comedy", 38),
+("G39", "Comedy", 39),
+("G40", "Comedy", 40),
+("G41", "Action", 41),
+("G42", "Adventure", 42),
+("G43", "Action", 43),
+("G44", "Thriller", 44),
+("G45", "Action", 45),
+("G46", "Horror", 46),
+("G47", "Action", 47),
+("G48", "Romance", 48),
+("G49", "Horror", 49),
+("G50", "Action", 50),
+("G51", "Drama", 51),
+("G52", "Action", 52),
+("G53", "Adventure", 53),
+("G54", "Action", 54),
+("G55", "Adventure", 55),
+("G56", "Adventure", 56),
+("G57", "Horror", 57),
+("G58", "Romance", 58),
+("G59", "Drama", 59),
+("G60", "Comedy", 60),
+("G61", "Drama", 61),
+("G62", "Action", 62),
+("G63", "Drama", 63),
+("G64", "Action", 64),
+("G65", "Action", 65),
+("G66", "Action", 66),
+("G67", "Comedy", 67),
+("G68", "History", 68),
+("G69", "Adventure", 69),
+("G70", "Adventure", 70),
+("G71", "Crime", 71),
+("G72", "Biography", 72),
+("G73", "Adventure", 73),
+("G74", "Action", 74),
+("G75", "Comedy", 75),
+("G76", "Crime", 76),
+("G77", "Horror", 77),
+("G78", "Horror", 78),
+("G79", "Adventure", 79),
+("G80", "Action", 80),
+("G81", "Action", 81),
+("G82", "Action", 82),
+("G83", "Action", 83),
+("G84", "Action", 84),
+("G85", "Drama", 85),
+("G86", "Action", 86),
+("G87", "Drama", 87),
+("G88", "Romantic Comedy", 88),
+("G89", "Romantic Comedy", 89),
+("G90", "Action", 90),
+("G91", "Action", 91),
+("G92", "Drama", 92),
+("G93", "Comedy", 93),
+("G94", "Biography", 94),
+("G95", "Comedy", 95),
+("G96", "Comedy", 96),
+("G97", "Comedy", 97),
+("G98", "Comedy", 98),
+("G99", "Documentary", 99),
+("G100", "Horror", 100),
+("G101", "Horror", 101);
+
+
+INSERT INTO Director VALUES
+("D1", "Paul Feig", 1),
+("D2", "Tyler Perry", 2),
+("D3", "Michael Bay", 3),
+("D4", "Michael Bay", 4),
+("D5", "Savage Steve Holland", 5),
+("D6", "Jaume Collet-Serra", 6),
+("D7", "Walt Becker", 7),
+("D8", "Michael M. Scott", 8),
+("D9", "Anne Fletcher", 9),
+("D10", "Denis Villeneuve", 10),
+("D11", "Denis Villeneuve", 11),
+("D12", "Forest Whitaker", 12),
+("D13", "Will Gluck", 13),
+("D14", "Nicole Holofcener", 14),
+("D15", "Joe Wright", 15),
+("D16", "Elaine McMillion Sheldon", 16),
+("D17", "Grant Sputore", 17),
+("D18", "Jeremiah Zagar", 18),
+("D19", "Steven Brill", 19),
+("D20", "Justin Baldoni", 20),
+("D21", "Unjoo Moon", 21),
+("D22", "Pierre Cofflin", 22),
+("D23", "Pierre Cofflin", 23),
+("D24", "Adam Brooks", 24),
+("D25", "Adam Wingard", 25),
+("D26", "Will Gluck", 26),
+("D27", "Harry Bradbeer", 27),
+("D28", "Harry Bradbeer", 28),
+("D29", "Jennifer Kaytin Robinson", 29),
+("D30", "Tommy O'Haver", 30),
+("D31", "Margaret Brown", 31),
+("D32", "Rob Letterman", 32),
+("D33", "Jeff Orlowski-Yang", 33),
+("D34", "John Hughes", 34),
+("D35", "Brian Klein", 35),
+("D36", "Yemisi Brookes", 36),
+("D37", "Alex Timbers", 37),
+("D38", "Alex Timbers", 38),
+("D39", "Ryan Polito", 39),
+("D40", "Rhys Thomas", 40),
+("D41", "Cedric Nicolas-Troyan", 41),
+("D42", "Peter Jackson", 42),
+("D43", "William Eubank", 43),
+("D44", "Sam Esmail", 44),
+("D45", "F. Gary Gary", 45),
+("D46", "Eli Craig", 46),
+("D47", "Babak Najafi", 47),
+("D48", "Susannah Grant", 48),
+("D49", "Tate Taylor", 49),
+("D50", "George Miller", 50),
+("D51", "D.J. Caruso", 51),
+("D52", "Fabrice du Welz", 52),
+("D53", "Benjamin Renner", 53),
+("D54", "Peter Berg", 54),
+("D55", "Kyle Balda", 55),
+("D56", "Kyle Balda", 56),
+("D57", "Bartosz M Kowalski", 57),
+("D58", "Roger Michell", 58),
+("D59", "Carrie Cracknell", 59),
+("D60", "Will Gluck", 60),
+("D61", "Joe Wright", 61),
+("D62", "Michael Mann", 62),
+("D63", "Stephen Hopkins", 63),
+("D64", "Sylvester Stallone", 64),
+("D65", "Jeremy Saulnier", 65),
+("D66", "Rawson Marshall Thurber", 66),
+("D67", "Donald Petrie", 67),
+("D68", "Steven Spielberg", 68),
+("D69", "Raja Gosnell", 69),
+("D70", "Raja Gosnell", 70),
+("D71", "Peter Sullivan", 71),
+("D72", "Asif Kapadia", 72),
+("D73", "Joe Pytka", 73),
+("D74", "Sam Raimi", 74),
+("D75", "Greg Mottola", 75),
+("D76", "John Luessenhop", 76),
+("D77", "André Øvredal", 77),
+("D78", "Jennifer Kent", 78),
+("D79", "Clay Kaytis", 79),
+("D80", "Rob Cohen", 80),
+("D81", "Justin Lin", 81),
+("D82", "John G. Avildsen", 82),
+("D83", "John G. Avildsen", 83),
+("D84", "John G. Avildsen", 84),
+("D85", "Sara Colangelo", 85),
+("D86", "Brenda Chapman", 86),
+("D87", "Aaron Sorkin", 87),
+("D88", "Susan Johnson", 88),
+("D89", "Michael Fimognari", 89),
+("D90", "Timur Bekmambetov", 90),
+("D91", "Tommy Wirkola", 91),
+("D92", "Miguel Ángel Vivas", 92),
+("D93", "Aanand L. Rai", 93),
+("D94", "Floyd Russ", 94),
+("D95", "Ruben Fleischer", 95),
+("D96", "Frank Coraci", 96),
+("D97", "Preston A. Whitmore II", 97),
+("D98", "Robert Smigel", 98),
+("D99", "Orlando von Einsiedel", 99),
+("D100", "David Bruckner", 100),
+("D101", "John R. Leonetti", 101);
+
+INSERT INTO Actor VALUES
+("A1", "Anna Kendrick", "Blake Lively", "Henry Golding", 1),
+("A2", "Tyler Perry", "Cassi Davis", "David Mann", 2),
+("A3", "Will Smith", "Martin Lawrence", "Lisa Boyle", 3),
+("A4", "Will Smith", "Martin Lawrence", "Gabrielle Union", 4),
+("A5", "Kendall Schmidt", "James Maslow", "Carlos PenaVega", 5),
+("A6", "Taron Egerton", "Jason Bateman", "Sofia Carson", 6),
+("A7", "Darby Camp", "Jack Whitehall", "Isaac Wang", 7),
+("A8", "Nick Purcha", "Joe Costa", "Camila Mendes", 8),
+("A9", "Danielle Macdonald", "Jennifer Aniston", "Odeya Rush", 9),
+("A10", "Timothee Chalamet", "Rebecca Ferguson", "Zendaya", 10),
+("A11", "Timothee Chalamet", "Rebecca Ferguson", "Zendaya", 11),
+("A12", "Katie Holmes", "Marc Blucas", "Michael Keaton", 12),
+("A13", "Mila Kunis", "Justin Timberlake", "Patricia Clarkson", 13),
+("A14", "Jennifer Aniston", "Frances McDormand", "Catherine Keener", 14),
+("A15", "Saoirse Ronan", "Cate Blanchett", "Eric Bana", 15),
+("A16", "Jan Rader", "Patricia Keller", "Necia Freeman", 16),
+("A17", "Luke Hawker", "Rose Byrne", "Maddie Lenton", 17),
+("A18", "Adam Sandler", "Queen Latifah", "Juancho Hernangomez", 18),
+("A19", "Adam Sandler", "Kevin James", "Julie Bowen", 19),
+("A20", "Blake Lively", "Justin Baldoni", "Jenny Slate", 20),
+("A21", "Evan Peters", "Danielle Macdonald", "Tilda Cobham-Hervey", 21),
+("A22", "Steve Carell", "Jason Segel", "Russell Brand", 22),
+("A23", "Steve Carell", "Kristen Wiig", "Benjamin Bratt", 23),
+("A24", "Ryan Reynolds", "Rachel Weisz", "Abigail Breslin", 24),
+("A25", "Nat Wolff", "LaKeith Stanfield", "Margaret Qualley", 25),
+("A26", "Emma Stone", "Amanda Bynes", "Penn Badgley", 26),
+("A27", "Millie Bobby Brown", "Henry Cavill", "Sam Claflin", 27),
+("A28", "Millie Bobby Brown", "Henry Cavill", "David Thewlis", 28),
+("A29", "Camila Mendes", "Maya Hawke", "Austin Abrams", 29),
+("A30", "Anne Hathaway", "Hugh Dancy", "Cary Elwes", 30),
+("A31", "Theodore Arthur", "Gary Autrey", "Chris Davis", 31),
+("A32", "Jack Black", "Dylan Minnette", "Odeya Rush", 32),
+("A33", "Andrew Ackerman", "Pim Bongaerts", "Neal Cantin", 33),
+("A34", "Matthew Broderick", "Alan Ruck", "Mia Sara", 34),
+("A35", "Jack Whitehall", "Jessica Louise Parkinson", NULL, 35),
+("A36", "Jack Whitehall", "Michael Whitehall", "Hugh Bonneville", 36),
+("A37", "John Mulaney", NULL, NULL, 37),
+("A38",	"John Mulaney", "Jon Brion", "Carole Shelley", 38),
+("A39", "John Mulaney", NULL, NULL, 39),
+("A40", "Petunia", "John Mulaney", "Amanda Walsh", 40),
+("A41", "Jun Kunimura", "Woody Harrelson", "Michiel Huisman", 41),
+("A42", "Naomi Watts", "Jack Black", "Adrien Brody", 42),
+("A43", "Liam Hemsworth", "Russell Crowe", "Luke Hemsworth", 43),
+("A44", "Julia Roberts", "Ethan Hawke", "Charlie Evans", 44),
+("A45", "Kevin Hart", "Gugu Mbatha-Raw", "Sam Worthington", 45),
+("A46", "Evangeline Lilly", "Owen Atlas", "Adam Scott", 46),
+("A47", "Gerard Butler", "Aaron Eckhart", "Morgan Freeman", 47),
+("A48", "Laura Dern", "Liam Hemsworth", "Diana Silvers", 48),
+("A49", "Octavia Spencer", "Diana Silvers", "Juliette Lewis", 49),
+("A50", "Tom Hardy", "Charlize Theron", "Nicholas Hoult", 50),
+("A51", "Noa Cohen", "Ido Tako", "Anthony Hopkins", 51),
+("A52", "Chadwick Boseman", "Luke Evans", "Alfred Molina", 52),
+("A53", "Kumail Nanjiani", "Trasi Gazal", "Elizabeth Banks", 53),
+("A54", "Mark Wahlberg", "Lauren Cohan", "Iko Uwais", 54),
+("A55", "Sandra Bullock", "Jon Hamm", "Michael Keaton", 55),
+("A56", "Steve Carell", "Pierre Coffin", "Alan Arkin", 56),
+("A57", "Julia Wieniawa-Narkiewicz", "Sebastian Dela", "Piotr Cyrwus", 57),
+("A58", "Julia Roberts", "Hugh Grant", "Hugh Bonneville", 58),
+("A59", "Dakota Johnson", "Cosmo Jarvis", "Richard E. Grant", 59),
+("A60", "James Corden", "Domhnall Gleeson", "Rose Byrne", 60),
+("A61", "Keira Knightley", "Matthew Macfadyen", "Brenda Blethyn", 61),
+("A62", "Johnny Depp", "Christian bale", "Jason Clarke", 62),
+("A63", "Stephen James", "Jason Sudeikis", "Eli Goree", 63),
+("A64", "Sylvester Stallone", "Julie Benz", "Matthew David Morrell", 64),
+("A65", "Aaron Pierre", "Don Johnson", "AnnaSophia Robb", 65),
+("A66", "Dwayne Johnson", "Ryan Reynolds", "Chris Diamantopoulos", 66),
+("A67", "Macaulay Culkin", "Edward Herrmann", "Jonathan Hyde", 67),
+("A68", "Liam Neeson", "Ben Kingsley", "Ralph Fiennes", 68),
+("A69", "Matthew Lillard", "Sarah Michelle Gellar", "Freddie Prinze Jr.", 69),
+("A70", "Matthew Lillard", "Sarah Michelle Gellar", "Freddie Prinze Jr.", 70),
+("A71", "Brenda Song", "Mike Vogel", "Dennis Haysbert", 71),
+("A72", "Ayrton Senna", "Reginaldo Leme", "John Bisignano", 72),
+("A73", "Michael Jordan", "Wayne Knight", "Theresa Randle", 73),
+("A74", "Tobey Maguire", "Kirsten Dunst", "James Franco", 74),
+("A75", "Jonah Hill", "Michael Cera", "Christopher Mintz-Plasse", 75),
+("A76", "Paul Walker", "Hayden Christensen", "Matt Dillon", 76),
+("A77", "Brian Cox", "Emile Hirsch", "Ophelia Lovibond", 77),
+("A78", "Essie Davis", "Noah Wiseman", "Hayley McElhinney", 78),
+("A79", "Oliver Hudson", "Jesse Gervasi", "Kurt Russell", 79),
+("A80", "Paul Walker", "Vin Diesel", "Michelle Rodriguez", 80),
+("A81", "Lucas Black", "Nathalie Kelley", "Sung Kang", 81),
+("A82", "Ralph Macchio", "Pat Morita", "Elisabeth Shue", 82),
+("A83", "Ralph Macchio", "Pat Morita", "Danny Kamekona", 83),
+("A84", "Ralph Macchio", "Pat Morita", "Robyn Lively", 84),
+("A85", "Maggie Gyllenhaal", "Gael García Bernal", "Ato Blankson-Wood", 85),
+("A86", "Val Kilmer", "Ralph Fiennes", "Michelle Pfeiffer", 86),
+("A87", "Eddie Redmayne", "Alex Sharp", "Sacha Baron Cohen", 87),
+("A88", "Lana Condor", "Noah Centineo", "Janel Parrish", 88),
+("A89", "Lana Condor", "Noah Centineo", "Jordan Fisher", 89),
+("A90", "James McAvoy", "Morgan Freeman", "Angelina Jolie", 90),
+("A91", "Noomi Rapace", "Glenn Close", "Willem Dafoe", 91),
+("A92", "Jose Coronado", "Ana Wagener", "Asia Ortega", 92),
+("A93", "Shah Rukh Khan", "Anushka Sharma", "Katrina Kaif", 93),
+("A94", "Zion Clark", "Gilbert Donahue", "Kimberly Clark", 94),
+("A95", "Jesse Eisenberg", "Woody Harrelson", "Emma Stone", 95),
+("A96", "Kevin James", "Rosario Dawson", "Leslie Bibb", 96),
+("A97", "Delroy Lindo", "Idris Elba", "Loretta Devine", 97),
+("A98", "Adam Sandler", "Chris Rock", "Steve Buscemi", 98),
+("A99", "Dana Abed", "Tia Alkerdi", "Khalid Farah", 99),
+("A100", "Rafe Spall", "Arsher Ali", "Robert James-Collier", 100),
+("A101", "Stanley Tucci", "Kiernan Shipka", "Miranda Otto", 101);
+
+-- update (CRUD) random examples for each table
+-- update movie rating for a specific movie
+UPDATE Movie 
+SET AudienceRec = "R"
+WHERE Title = 'Zion';
+
+-- update the actor's name if there's a change
+UPDATE Actor 
+SET Actor1 = 'Adam Sandler' 
+WHERE ActorID = 'A1';
+
+-- update director name if there's a change
+UPDATE Director 
+SET Director = 'Denis Villeneuve' 
+WHERE DirectorID = 'D1';
+
+-- update genre name if there's a reclassification
+UPDATE Genre 
+SET Genre = 'Sci-Fi' 
+WHERE GenreID = 'G10';
+
+#Return movie title from specific year
+select M.Title as "Movies Made in 2020"
+from Movie as M
+where M.ReleaseYear = 2020;
+
+#Return movie title with specific actor
+select M.Title as "Movies with Adam Sandler"
+from Movie as M
+join Actor as A on M.MovieID = A.MovieID
+where A.Actor1 = 'Adam Sandler' 
+   or A.Actor2 = 'Adam Sandler' 
+   or A.Actor3 = 'Adam Sandler';
+
+#Return movie with highest rating in each genre
+select M.Title, G.Genre, max(M.MovieRating) as MovieRating
+from Movie as M
+join Genre as G on M.MovieID = G.MovieID
+group by G.Genre;
+
+#Return movies that share a director
+select M.Title, D.Director
+from Movie as M, Director as D
+where M.MovieID = D.MovieID and D.Director in (
+	select D.Director
+    from Director as D
+    join Movie as M on M.MovieID = D.MovieID
+    group by D.Director
+    having count(M.MovieID) > 1
+);
+
+#Return oldest movies from each audience recommendation
+select M.Title, M.AudienceRec, M.ReleaseYear
+from Movie as M
+where M.ReleaseYear = (
+    select MIN(ReleaseYear)
+    from Movie
+    where AudienceRec = M.AudienceRec
+)
+order by M.AudienceRec asc;
+
+-- max and min (newest and oldest movies)
+SELECT Title, ReleaseYear
+FROM Movie
+WHERE ReleaseYear = (SELECT MIN(ReleaseYear) FROM Movie)
+   OR ReleaseYear = (SELECT MAX(ReleaseYear) FROM Movie);
+   
+-- directors with the highest avg movie ratings   
+SELECT D.Director, ROUND(AVG(M.MovieRating), 2) AS AvgRating, COUNT(M.MovieID) AS MovieCount
+FROM Movie M
+JOIN Director D ON M.MovieID = D.MovieID
+GROUP BY D.Director
+HAVING COUNT(M.MovieID) >= 2
+ORDER BY AvgRating DESC
+LIMIT 10;
+
+-- most frequent actor in the database
+SELECT ActorName, COUNT(*) AS MovieCount
+FROM (
+    SELECT A.Actor1 AS ActorName
+    FROM Movie M
+    JOIN Actor A ON M.MovieID = A.MovieID
+    UNION ALL
+    SELECT A.Actor2
+    FROM Movie M
+    JOIN Actor A ON M.MovieID = A.MovieID
+    UNION ALL
+    SELECT A.Actor3
+    FROM Movie M
+    JOIN Actor A ON M.MovieID = A.MovieID
+) AS AllActors
+WHERE ActorName IS NOT NULL
+GROUP BY ActorName
+ORDER BY MovieCount DESC
+LIMIT 1;
+
+-- actors in the most high-rated movies
+SELECT A.Actor1, A.Actor2, A.Actor3, M.Title, M.MovieRating
+FROM Movie M
+JOIN Actor A ON M.MovieID = A.MovieID
+WHERE M.MovieRating > 7.0
+ORDER BY M.MovieRating DESC
+LIMIT 10;
+
+-- most popular genre among highly rated movies
+SELECT G.Genre, COUNT(M.MovieID) AS HighRatedCount
+FROM Movie M
+JOIN Genre G ON M.MovieID = G.MovieID
+WHERE M.MovieRating > 8.0
+GROUP BY G.Genre
+ORDER BY HighRatedCount DESC
+LIMIT 10;
+
+-- Return movies with specific Genre
+SELECT M.Title
+FROM Movie M
+JOIN Genre G ON M.MovieID = G.MovieID
+WHERE G.Genre = 'Comedy'
+ORDER BY M.Title;
+
+-- Return movies that were released from a specifc year and later (ordered in ascending order from oldest to newest release on or after 2000) (NOTE: to order it in descending order just change ASC to DESC)
+SELECT M.Title, M.ReleaseYear
+FROM Movie M
+WHERE ReleaseYear >= 2000
+ORDER BY ReleaseYear ASC;
+
+-- Return all the info on a specific movieID (left join, nested query) 
+SELECT
+   M.MovieID, M.Title, M.ReleaseYear, M.MovieRating, M.AudienceRec,
+   A.Actor1, A.Actor2, A.Actor3,
+   D.Director,
+   G.Genre
+FROM Movie M
+LEFT JOIN Actor A ON M.MovieID = A.MovieID
+LEFT JOIN Director D ON M.MovieID = D.MovieID
+LEFT JOIN Genre G ON M.MovieID = G.MovieID
+WHERE M.MovieID =(
+  SELECT MovieID
+  FROM Movie
+  WHERE MovieID = 11
+);
+
+-- Return movies with a specific MovieRating and above (example will be with <= 5.0) and with a specific audience rec(TV-MA)
+SELECT M.Title, M.ReleaseYear, M.MovieRating, M.AudienceRec
+FROM Movie M
+WHERE M.MovieRating >= 5.0 AND M.AudienceRec = 'TV-MA'
+ORDER BY M.MovieRating DESC;
+
+
+-- Return movies that were released before a specicif year and with a specific genre and audienceRec
+SELECT M.Title, M.ReleaseYear, M.MovieRating, M.AudienceRec, G.Genre
+FROM Movie M
+JOIN Genre G ON M.MovieID = G.MovieID
+WHERE M.MovieID IN (
+  SELECT M2.MovieID
+  FROM Movie M2
+  JOIN Genre G2 ON M2.MovieID = G2.MovieID
+  WHERE M2.ReleaseYear > 2010
+    AND M2.AudienceRec = 'R'
+    AND G2.Genre = 'Comedy'
+)
+ORDER BY M.ReleaseYear ASC;
+
+#and then this would be in the query: (creates a delte cascade that deletes all references to that movie)
+DELETE FROM Movie WHERE MovieID = 10;
+
+    
