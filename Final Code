@@ -29,12 +29,6 @@ CREATE TABLE Director (
     FOREIGN KEY (MovieID) REFERENCES Movie(MovieID) ON DELETE CASCADE
 );
 
-
-drop table Movie;
-drop table Actor;
-drop table Director;
-drop table Genre;
-
 INSERT INTO Movie VALUES
 (1, "A Simple Favor", 2018, 6.8, "R"),
 (2, "A Madea Homecoming", 2020, 5.7, "TV-MA"),
