@@ -350,23 +350,23 @@ INSERT INTO Production VALUES
 ("John R. Leonetti", 101);
 
 
-INSERT INTO Actor (ActorName) VALUES
-(“Aaron Eckhart”),
-(“Aaron Pierre”),
-(“Abigail Breslin”),
-(“Adam Sandler”),
-(“Adam Scott”),
-(“Adrien Brody”),
-(“Alan Arkin”),
-(“Alan Ruck”),
-(“Alex Sharp”),
-(“Alfred Molina”),
-(“Amanda Bynes”),
-(“Amanda Walsh”),
-(“Ana Wagener”),
-(“Andrew Ackerman”),
-(“Angelina Jolie”),
-(“Anna Kendrick”),
+INSERT INTO Actor VALUES
+(1, “Aaron Eckhart”),
+(2, “Aaron Pierre”),
+(3, “Abigail Breslin”),
+(4, “Adam Sandler”),
+(5, “Adam Scott”),
+(6, “Adrien Brody”),
+(7, “Alan Arkin”),
+(8, “Alan Ruck”),
+(9, “Alex Sharp”),
+(10, “Alfred Molina”),
+(11, “Amanda Bynes”),
+(12,“Amanda Walsh”),
+(13, “Ana Wagener”),
+(14, “Andrew Ackerman”),
+(15, “Angelina Jolie”),
+(16, “Anna Kendrick”),
 (“AnnaSophia Robb”),
 (“Anne Hathaway”),
 (“Anthony Hopkins”),
@@ -606,7 +606,6 @@ INSERT INTO Actor (ActorName) VALUES
 (“Zendaya”),
 (“Zion Clark”)
 
-('Zion Clark')
 
 
 
