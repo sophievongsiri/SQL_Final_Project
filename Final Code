@@ -27,54 +27,54 @@ CREATE TABLE MovieActor (
     FOREIGN KEY (MovieID) REFERENCES Movie(MovieID) ON DELETE CASCADE
 );
 
-CREATE TABLE Director (
-    Production Company    VARCHAR(30),
-    Director    VARCHAR(30),
-    MovieID     INT PRIMARY KEY,
+CREATE TABLE Production (
+    DistributionCompany    VARCHAR(30),
+    Director               VARCHAR(30),
+    MovieID                INT PRIMARY KEY,
     FOREIGN KEY (MovieID) REFERENCES Movie(MovieID) ON DELETE CASCADE
 );
 
 
-drop table Movie;
 drop table Actor;
-drop table Director;
+drop table Production;
 drop table Genre;
+drop table Movie;
 
 INSERT INTO Movie VALUES
-(1, "A Simple Favor", 2018, 6.8, "R"),
-(2, "A Madea Homecoming", 2020, 5.7, "TV-MA"),
-(3, "Bad Boys", 1995, 6.8, "R"),
-(4, "Bad Boys II", 2003, 6.6, "R"),
-(5, "Big Time Movie", 2012, 6.2, "PG"),
-(6, "Carry-On", 2024, 6.5, "PG-13"),
-(7, "Clifford the Big Red Dog", 2021, 5.9, "PG"),
-(8, "Dangerous Lies", 2020, 5.4, "TV-14"),
-(9, "Dumplin", 2018, 6.5, "PG-13"),
-(10, "Dune: Part One", 2021, 8.0, "PG-13"),
-(11, "Dune: Part Two", 2024, 8.5, "PG-13"),
-(12, "First Daughter", 2004, 5.2, "PG"),
-(13, "Friends with Benefits", 2011, 6.5, "R"),
-(14, "Friends with Money", 2006, 5.8, "R"),
-(15, "Hanna", 2011, 6.7, "PG-13"),
-(16, "Heroin(e)", 2017, 6.8, "TV-14"),
-(17, "I Am Mother", 2019, 6.7, "PG"),
-(18, "Hustle", 2022, 7.3, "R"),
-(19, "Hubie Halloween", 2020, 5.3, "PG-13"),
-(20, "It Ends with Us", 2024, 6.4, "PG-13"),
-(21, "I Am Woman", 2019, 6.6, "TV-MA"),
-(22, "Despicable Me", 2010, 7.6, "PG"),
-(23, "Despicable Me 2", 2013, 7.3, "PG"),
-(24, "Definitely, Maybe", 2008, 7.1, "PG-13"),
-(25, "Death Note", 2017, 4.5, "TV-MA"),
-(26, "Easy A", 2010, 7.0, "PG-13"),
-(27, "Enola Holmes", 2020, 6.6, "PG-13"),
-(28, "Enola Holmes 2", 2022, 6.8, "PG-13"),
-(29, "Do Revenge", 2022, 6.3, "TV-MA"),
-(30, "Ella Enchanted", 2004, 6.3, "PG"),
-(31, "Descendant", 2022, 7.1, "PG"),
-(32, "Goosebumps", 2015, 6.3, "PG"),
-(33, "Chasing Coral", 2017, 8, "PG"),
-(34, "Ferris Bueller's Day Off", 1986, 7.8, "PG-13"),
+(1, "A Simple Favor", 2018, 6.8, "R", "English"),
+(2, "A Madea Homecoming", 2020, 5.7, "TV-MA", "English"),
+(3, "Bad Boys", 1995, 6.8, "R", "English"),
+(4, "Bad Boys II", 2003, 6.6, "R", "English"),
+(5, "Big Time Movie", 2012, 6.2, "PG", "English"),
+(6, "Carry-On", 2024, 6.5, "PG-13", "English"),
+(7, "Clifford the Big Red Dog", 2021, 5.9, "PG", "English"),
+(8, "Dangerous Lies", 2020, 5.4, "TV-14", "English"),
+(9, "Dumplin", 2018, 6.5, "PG-13", "English"),
+(10, "Dune: Part One", 2021, 8.0, "PG-13", "English"),
+(11, "Dune: Part Two", 2024, 8.5, "PG-13", "English"),
+(12, "First Daughter", 2004, 5.2, "PG", "English"),
+(13, "Friends with Benefits", 2011, 6.5, "R", "English"),
+(14, "Friends with Money", 2006, 5.8, "R", "English"),
+(15, "Hanna", 2011, 6.7, "PG-13", "English"),
+(16, "Heroin(e)", 2017, 6.8, "TV-14", "English"),
+(17, "I Am Mother", 2019, 6.7, "PG", "English"),
+(18, "Hustle", 2022, 7.3, "R", "English"),
+(19, "Hubie Halloween", 2020, 5.3, "PG-13", "English"),
+(20, "It Ends with Us", 2024, 6.4, "PG-13", "English"),
+(21, "I Am Woman", 2019, 6.6, "TV-MA", "English"),
+(22, "Despicable Me", 2010, 7.6, "PG", "English"),
+(23, "Despicable Me 2", 2013, 7.3, "PG", "English"),
+(24, "Definitely, Maybe", 2008, 7.1, "PG-13", "English"),
+(25, "Death Note", 2017, 4.5, "TV-MA", "English"),
+(26, "Easy A", 2010, 7.0, "PG-13", "English"),
+(27, "Enola Holmes", 2020, 6.6, "PG-13", "English"),
+(28, "Enola Holmes 2", 2022, 6.8, "PG-13", "English"),
+(29, "Do Revenge", 2022, 6.3, "TV-MA", "English"),
+(30, "Ella Enchanted", 2004, 6.3, "PG", "English"),
+(31, "Descendant", 2022, 7.1, "PG", "English"),
+(32, "Goosebumps", 2015, 6.3, "PG", "English"),
+(33, "Chasing Coral", 2017, 8, "PG", "English"),
+(34, "Ferris Bueller's Day Off", 1986, 7.8, "PG-13", "English"),
 (35, "Jack Whitehall: At large", 2017, 6.9, "TV-MA"),
 (36, "Jack Whitehall: Christmas with my father", 2019, 6.0, "TV-MA"),
 (37, "John Mulaney: Baby J", 2023, 7.5, "TV-MA"),
@@ -246,41 +246,41 @@ INSERT INTO Genre VALUES
 ("Horror", 100),
 ("Horror", 101);
 
-INSERT INTO Director VALUES
-("Paul Feig", 1),
-("Tyler Perry", 2),
-("Michael Bay", 3),
-("Michael Bay", 4),
-("Savage Steve Holland", 5),
-("Jaume Collet-Serra", 6),
-("Walt Becker", 7),
-("Michael M. Scott", 8),
-("Anne Fletcher", 9),
-("Denis Villeneuve", 10),
-("Denis Villeneuve", 11),
-("Forest Whitaker", 12),
-("Will Gluck", 13),
-("Nicole Holofcener", 14),
-("Joe Wright", 15),
-("Elaine McMillion Sheldon", 16),
-("Grant Sputore", 17),
-("Jeremiah Zagar", 18),
-("Steven Brill", 19),
-("Justin Baldoni", 20),
-("Unjoo Moon", 21),
-("Pierre Cofflin", 22),
-("Pierre Cofflin", 23),
-("Adam Brooks", 24),
-("Adam Wingard", 25),
-("Will Gluck", 26),
-("Harry Bradbeer", 27),
-("Harry Bradbeer", 28),
-("Jennifer Kaytin Robinson", 29),
-("Tommy O'Haver", 30),
-("Margaret Brown", 31),
-("Rob Letterman", 32),
-("Jeff Orlowski-Yang", 33),
-("John Hughes", 34),
+INSERT INTO Production VALUES
+("Lionsgate", "Paul Feig", 1),
+("Netflix", "Tyler Perry", 2),
+("Sony Pictures Releasing", "Michael Bay", 3),
+("Sony Pictures Releasing", "Michael Bay", 4),
+("Nickelodeon", "Savage Steve Holland", 5),
+("Netflix", "Jaume Collet-Serra", 6),
+("Paramount Pictures","Walt Becker", 7),
+("Netflix", "Michael M. Scott", 8),
+("Netflix", "Anne Fletcher", 9),
+("Warners Bros. Pictures", "Denis Villeneuve", 10),
+("Warners Bros. Pictures", "Denis Villeneuve", 11),
+("20th Century Fox", "Forest Whitaker", 12),
+("Sony Pictures Releasing", "Will Gluck", 13),
+("Sony Pictures Classics", "Nicole Holofcener", 14),
+("Focus Features", "Joe Wright", 15),
+("Netflix", "Elaine McMillion Sheldon", 16),
+("Netflix", "Grant Sputore", 17),
+("Netflix", "Jeremiah Zagar", 18),
+("Netflix", "Steven Brill", 19),
+("Sony Pictures Releasing", "Justin Baldoni", 20),
+("Stan", "Unjoo Moon", 21),
+("Universal Pictures", "Pierre Cofflin", 22),
+("Universal Pictures", "Pierre Cofflin", 23),
+("Universal Pictures", "Adam Brooks", 24),
+("Netflix", "Adam Wingard", 25),
+("Sony Pictures Releasing", "Will Gluck", 26),
+("Netflix", "Harry Bradbeer", 27),
+("Netflix", "Harry Bradbeer", 28),
+("Netflix", "Jennifer Kaytin Robinson", 29),
+("Miramax Films", "Tommy O'Haver", 30),
+("Netflix", "Margaret Brown", 31),
+("Sony Pictures Releasing", "Rob Letterman", 32),
+("Netflix", "Jeff Orlowski-Yang", 33),
+("Paramount Pictures", "John Hughes", 34),
 ("Brian Klein", 35),
 ("Yemisi Brookes", 36),
 ("Alex Timbers", 37),
@@ -475,10 +475,11 @@ UPDATE Genre
 SET Genre = 'Sci-Fi' 
 WHERE GenreID = 'G10';
 
-#Return movie title from specific year
-select M.Title as "Movies Made in 2020"
+#Return Netflix Original movies
+select M.Title as "Netflix Originals"
 from Movie as M
-where M.ReleaseYear = 2020;
+join Production as P on M.MovieID = P.MovieID
+where P.DistributionCompany = "Netflix";
 
 #Return movie title with specific actor
 select M.Title as "Movies with Adam Sandler"
@@ -495,15 +496,16 @@ join Genre as G on M.MovieID = G.MovieID
 group by G.Genre;
 
 #Return movies that share a director
-select M.Title, D.Director
-from Movie as M, Director as D
-where M.MovieID = D.MovieID and D.Director in (
-	select D.Director
-    from Director as D
-    join Movie as M on M.MovieID = D.MovieID
-    group by D.Director
+select M.Title, P.Director
+from Movie as M, Production as P
+where M.MovieID = P.MovieID and P.Director in (
+	select P.Director
+    from Production as P
+    join Movie as M on M.MovieID = P.MovieID
+    group by P.Director
     having count(M.MovieID) > 1
-);
+)
+order by P.Director asc;
 
 #Return oldest movies from each audience recommendation
 select M.Title, M.AudienceRec, M.ReleaseYear
@@ -522,10 +524,10 @@ WHERE ReleaseYear = (SELECT MIN(ReleaseYear) FROM Movie)
    OR ReleaseYear = (SELECT MAX(ReleaseYear) FROM Movie);
    
 -- directors with the highest avg movie ratings   
-SELECT D.Director, ROUND(AVG(M.MovieRating), 2) AS AvgRating, COUNT(M.MovieID) AS MovieCount
+SELECT P.Director, ROUND(AVG(M.MovieRating), 2) AS AvgRating, COUNT(M.MovieID) AS MovieCount
 FROM Movie M
-JOIN Director D ON M.MovieID = D.MovieID
-GROUP BY D.Director
+JOIN Production P ON M.MovieID = P.MovieID
+GROUP BY P.Director
 HAVING COUNT(M.MovieID) >= 2
 ORDER BY AvgRating DESC
 LIMIT 10;
@@ -584,11 +586,11 @@ ORDER BY ReleaseYear ASC;
 SELECT
    M.MovieID, M.Title, M.ReleaseYear, M.MovieRating, M.AudienceRec,
    A.Actor1, A.Actor2, A.Actor3,
-   D.Director,
+   P.Director,
    G.Genre
 FROM Movie M
 LEFT JOIN Actor A ON M.MovieID = A.MovieID
-LEFT JOIN Director D ON M.MovieID = D.MovieID
+LEFT JOIN Production P ON M.MovieID = P.MovieID
 LEFT JOIN Genre G ON M.MovieID = G.MovieID
 WHERE M.MovieID =(
   SELECT MovieID
