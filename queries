@@ -60,39 +60,39 @@ where M.ReleaseYear = (
 order by M.AudienceRec asc;
 
 -- max and min (newest and oldest movies)
-SELECT Title, ReleaseYear
-FROM Movie
-WHERE ReleaseYear = (SELECT MIN(ReleaseYear) FROM Movie)
+select Title, ReleaseYear
+from Movie
+where ReleaseYear = (SELECT MIN(ReleaseYear) FROM Movie)
    OR ReleaseYear = (SELECT MAX(ReleaseYear) FROM Movie);
    
 -- directors with the highest avg movie ratings   
-SELECT D.Director, ROUND(AVG(M.MovieRating), 2) AS AvgRating, COUNT(M.MovieID) AS MovieCount
-FROM Movie M
-JOIN Director D ON M.MovieID = D.MovieID
-GROUP BY D.Director
-HAVING COUNT(M.MovieID) >= 2
-ORDER BY AvgRating DESC
-LIMIT 10;
+select D.Director, ROUND(AVG(M.MovieRating), 2) AS AvgRating, COUNT(M.MovieID) AS MovieCount
+from Movie M
+join Director D ON M.MovieID = D.MovieID
+group by D.Director
+having count(M.MovieID) >= 2
+order by AvgRating DESC
+limit 10;
 
 -- most frequent actor in the database
-SELECT ActorName, COUNT(*) AS MovieCount
-FROM (
-    SELECT A.Actor1 AS ActorName
-    FROM Movie M
-    JOIN Actor A ON M.MovieID = A.MovieID
-    UNION ALL
-    SELECT A.Actor2
-    FROM Movie M
-    JOIN Actor A ON M.MovieID = A.MovieID
-    UNION ALL
-    SELECT A.Actor3
-    FROM Movie M
-    JOIN Actor A ON M.MovieID = A.MovieID
-) AS AllActors
-WHERE ActorName IS NOT NULL
-GROUP BY ActorName
-ORDER BY MovieCount DESC
-LIMIT 1;
+select ActorName, count(*) as MovieCount
+from (
+    select A.Actor1 AS ActorName
+    from Movie M
+    join Actor A on M.MovieID = A.MovieID
+    union ALL
+    select A.Actor2
+    from Movie M
+    join Actor A on M.MovieID = A.MovieID
+    union ALL
+    select A.Actor3
+    from Movie M
+    join Actor A on M.MovieID = A.MovieID
+) as AllActors
+where ActorName IS NOT NULL
+group by ActorName
+order by MovieCount DESC
+limit 1;
 
 -- actors in the most high-rated movies
 SELECT A.Actor1, A.Actor2, A.Actor3, M.Title, M.MovieRating
