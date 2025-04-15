@@ -3,7 +3,8 @@ CREATE TABLE Movie (
     Title           VARCHAR(50),
     ReleaseYear     INT,
     MovieRating     DECIMAL(3,2),
-    AudienceRec     VARCHAR(10)
+    AudienceRec     VARCHAR(10),
+    Language        VARCHAR(15)
 );
 
 CREATE TABLE Genre (
@@ -13,14 +14,21 @@ CREATE TABLE Genre (
 );
 
 CREATE TABLE Actor (
-    Actor1      VARCHAR(30),
-    Actor2      VARCHAR(30),
-    Actor3      VARCHAR(30),
-    MovieID     INT PRIMARY KEY,
+    ActorID     VARCHAR(30) PRIMARY KEY,
+    ActorName   VARCHAR(30),
+    Birthday    DATE
+);
+
+CREATE TABLE MovieActor (
+    ActorID     VARCHAR(30),
+    MovieID     INT,
+    PRIMARY KEY (ActorID, MovieID),
+    FOREIGN KEY (ActorID) REFERENCES Actor(ActorID) ON DELETE CASCADE,
     FOREIGN KEY (MovieID) REFERENCES Movie(MovieID) ON DELETE CASCADE
 );
 
 CREATE TABLE Director (
+    Production Company    VARCHAR(30),
     Director    VARCHAR(30),
     MovieID     INT PRIMARY KEY,
     FOREIGN KEY (MovieID) REFERENCES Movie(MovieID) ON DELETE CASCADE
