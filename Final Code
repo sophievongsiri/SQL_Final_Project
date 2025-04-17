@@ -14,13 +14,13 @@ CREATE TABLE Genre (
 );
 
 CREATE TABLE Actor (
-    ActorID     VARCHAR(30) PRIMARY KEY,
+    ActorID     INT PRIMARY KEY,
     ActorName   VARCHAR(30),
     Birthday    DATE
 );
 
 CREATE TABLE MovieActor (
-    ActorID     VARCHAR(30),
+    ActorID     INT,
     MovieID     INT,
     PRIMARY KEY (ActorID, MovieID),
     FOREIGN KEY (ActorID) REFERENCES Actor(ActorID) ON DELETE CASCADE,
