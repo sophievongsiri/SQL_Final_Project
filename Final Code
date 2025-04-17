@@ -349,8 +349,6 @@ INSERT INTO Production VALUES
 ("David Bruckner", 100),
 ("John R. Leonetti", 101);
 
-
-//Note: (date format: 'Year-MM-DD')
 INSERT INTO Actor VALUES 
 (1, 'Aaron Eckhart', '1968-03-12'),
 (2, 'Aaron Pierre', '1994-06-07'),
@@ -607,6 +605,7 @@ INSERT INTO Actor VALUES
 (253, 'Zendaya', '1996-09-01'),
 (254, 'Zion Clark', '1997-09-29');
 
+INSERT INTO MovieActor values
 
 
 
