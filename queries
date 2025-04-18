@@ -164,4 +164,36 @@ ORDER BY M.ReleaseYear ASC;
 #and then this would be in the query: (creates a delte cascade that deletes all references to that movie)
 DELETE FROM Movie WHERE MovieID = 10;
 
+//CRUD DELETE:
+~ Delete based on actorID
+DELETE Movie, Actor, Director, Genre
+FROM Movie
+LEFT JOIN Actor ON Movie.ActorID = Actor.ActorID
+LEFT JOIN Director ON Movie.DirectorID = Director.DirectorID
+LEFT JOIN Genre ON Movie.GenreID = Genre.GenreID
+WHERE Actor.ActorID = 'A3';
+
+~ Delete based on MovieID
+DELETE Movie, Actor, Director, Genre
+FROM Movie
+LEFT JOIN Actor ON Movie.ActorID = Actor.ActorID
+LEFT JOIN Director ON Movie.DirectorID = Director.DirectorID
+LEFT JOIN Genre ON Movie.GenreID = Genre.GenreID
+WHERE Movie.MovieID = 3;
+
+~ Delete based on DirectorID
+DELETE Movie, Actor, Director, Genre
+FROM Movie
+LEFT JOIN Actor ON Movie.ActorID = Actor.ActorID
+LEFT JOIN Director ON Movie.DirectorID = Director.DirectorID
+LEFT JOIN Genre ON Movie.GenreID = Genre.GenreID
+WHERE Director.DirectorID = 'D3';
+
+~ Delete based on GenreID
+DELETE Movie, Actor, Director, Genre
+FROM Movie
+LEFT JOIN Actor ON Movie.ActorID = Actor.ActorID
+LEFT JOIN Director ON Movie.DirectorID = Director.DirectorID
+LEFT JOIN Genre ON Movie.GenreID = Genre.GenreID
+WHERE Genre.GenreID = 'G3';
     
