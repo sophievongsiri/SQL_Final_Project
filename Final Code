@@ -1,3 +1,9 @@
+CREATE TABLE Genre (
+    GenreID     INT PRIMARY KEY AUTO_INCREMENT,
+    GenreName   VARCHAR(30) UNIQUE
+); 
+//Comment: Table Genre must be inserted prior to Movie table due to Forign Key constraints
+
 CREATE TABLE Movie (
     MovieID         INT PRIMARY KEY,
     Title           VARCHAR(50),
@@ -7,11 +13,6 @@ CREATE TABLE Movie (
     Language        VARCHAR(15),
     GenreID         INT,
     FOREIGN KEY (GenreID) REFERENCES Genre(GenreID) ON DELETE SET NULL
-);
-
-CREATE TABLE Genre (
-    GenreID     INT PRIMARY KEY AUTO_INCREMENT,
-    GenreName   VARCHAR(30) UNIQUE
 );
 
 CREATE TABLE Actor (
