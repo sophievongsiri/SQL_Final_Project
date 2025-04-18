@@ -4,13 +4,14 @@ CREATE TABLE Movie (
     ReleaseYear     INT,
     MovieRating     DECIMAL(3,2),
     AudienceRec     VARCHAR(10),
-    Language        VARCHAR(15)
+    Language        VARCHAR(15),
+    GenreID         INT,
+    FOREIGN KEY (GenreID) REFERENCES Genre(GenreID) ON DELETE SET NULL
 );
 
 CREATE TABLE Genre (
-    Genre       VARCHAR(15),
-    MovieID     INT PRIMARY KEY,
-    FOREIGN KEY (MovieID) REFERENCES Movie(MovieID) ON DELETE CASCADE
+    GenreID     INT PRIMARY KEY AUTO_INCREMENT,
+    GenreName   VARCHAR(30) UNIQUE
 );
 
 CREATE TABLE Actor (
