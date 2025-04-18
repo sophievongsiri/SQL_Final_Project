@@ -108,7 +108,7 @@ INSERT INTO Movie VALUES
 (69, "Scooby-Doo", 2002, 5.3, "PG", "English", 8),
 (70, "Scooby-Doo 2: Monsters Unleased", 2004, 5.3, "PG", "English", 8),
 (71, "Secret Obsession", 2019, 4.5, "TV-14", "English", 11),
-(72, "Senna", 2010, 8.5, "PG-13", "English", "English", 7),
+(72, "Senna", 2010, 8.5, "PG-13", "English", 7),
 (73, "Space Jam", 1996, 6.5, "PG", "English", 8),
 (74, "Spider-Man 3", 2007, 6.3, "PG-13", "English", 4),
 (75, "Superbad", 2007, 7.6, "R", "English", 1),
