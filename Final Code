@@ -20,8 +20,8 @@ CREATE TABLE Actor (
 );
 
 CREATE TABLE MovieActor (
-    ActorID     VARCHAR(15),
     MovieID     INT,
+    ActorID     VARCHAR(15),
     PRIMARY KEY (ActorID, MovieID),
     FOREIGN KEY (ActorID) REFERENCES Actor(ActorID) ON DELETE CASCADE,
     FOREIGN KEY (MovieID) REFERENCES Movie(MovieID) ON DELETE CASCADE
