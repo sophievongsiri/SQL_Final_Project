@@ -704,7 +704,6 @@ INSERT INTO MovieActor values
 (100, 'A209'), (100, 'A21'), (100, 'A215'),
 (101, 'A231'), (101, 'A137'), (101, 'A180');     
 
-
 -- update (CRUD) random examples for each table
 -- update movie rating for a specific movie
 UPDATE Movie 
@@ -713,10 +712,10 @@ WHERE Title = 'Zion';
 
 -- update the actor's name if there's a change
 UPDATE Actor 
-SET Actor1 = 'Adam Sandler' 
+SET ActorName = 'Adam Sandler' 
 WHERE ActorID = 'A1';
 
--- update director name if there's a change
+-- update director name if there's a change ////////////////////////////////////////////////////////////////
 UPDATE Director 
 SET Director = 'Denis Villeneuve' 
 WHERE DirectorID = 'D1';
@@ -724,7 +723,7 @@ WHERE DirectorID = 'D1';
 -- update genre name if there's a reclassification
 UPDATE Genre 
 SET Genre = 'Sci-Fi' 
-WHERE GenreID = 'G10';
+WHERE MovieID = 10;
 
 #Return Netflix Original movies
 select M.Title as "Netflix Originals"
@@ -733,18 +732,24 @@ join Production as P on M.MovieID = P.MovieID
 where P.DistributionCompany = "Netflix";
 
 #Return movie title with specific actor
-select M.Title as "Movies with Adam Sandler"
-from Movie as M
-join Actor as A on M.MovieID = A.MovieID
-where A.Actor1 = 'Adam Sandler' 
-   or A.Actor2 = 'Adam Sandler' 
-   or A.Actor3 = 'Adam Sandler';
+SELECT M.Title AS "Movies with Adam Sandler"
+FROM Movie M
+JOIN MovieActor MA ON M.MovieID = MA.MovieID
+JOIN Actor A ON MA.ActorID = A.ActorID
+WHERE A.ActorName = 'Adam Sandler';
+
 
 #Return movie with highest rating in each genre
-select M.Title, G.Genre, max(M.MovieRating) as MovieRating
-from Movie as M
-join Genre as G on M.MovieID = G.MovieID
-group by G.Genre;
+SELECT M.Title, G.Genre, M.MovieRating
+FROM Movie M
+JOIN Genre G ON M.MovieID = G.MovieID
+JOIN (
+    SELECT G.Genre, MAX(M.MovieRating) AS BestRating
+    FROM Movie M
+    JOIN Genre G ON M.MovieID = G.MovieID
+    GROUP BY G.Genre
+) AS HighestRating ON G.Genre = HighestRating.Genre AND M.MovieRating = HighestRating.MaxRating;
+
 
 #Return movies that share a director
 select M.Title, P.Director
@@ -757,6 +762,8 @@ where M.MovieID = P.MovieID and P.Director in (
     having count(M.MovieID) > 1
 )
 order by P.Director asc;
+
+
 
 #Return oldest movies from each audience recommendation
 select M.Title, M.AudienceRec, M.ReleaseYear
@@ -784,32 +791,22 @@ ORDER BY AvgRating DESC
 LIMIT 10;
 
 -- most frequent actor in the database
-SELECT ActorName, COUNT(*) AS MovieCount
-FROM (
-    SELECT A.Actor1 AS ActorName
-    FROM Movie M
-    JOIN Actor A ON M.MovieID = A.MovieID
-    UNION ALL
-    SELECT A.Actor2
-    FROM Movie M
-    JOIN Actor A ON M.MovieID = A.MovieID
-    UNION ALL
-    SELECT A.Actor3
-    FROM Movie M
-    JOIN Actor A ON M.MovieID = A.MovieID
-) AS AllActors
-WHERE ActorName IS NOT NULL
-GROUP BY ActorName
-ORDER BY MovieCount DESC
+SELECT A.ActorName, COUNT(*) AS AppearanceCount
+FROM Actor A
+GROUP BY A.ActorName
+ORDER BY AppearanceCount DESC
 LIMIT 1;
 
 -- actors in the most high-rated movies
-SELECT A.Actor1, A.Actor2, A.Actor3, M.Title, M.MovieRating
+SELECT A.ActorName, M.Title, M.MovieRating
 FROM Movie M
-JOIN Actor A ON M.MovieID = A.MovieID
-WHERE M.MovieRating > 7.0
-ORDER BY M.MovieRating DESC
-LIMIT 10;
+JOIN MovieActor MA ON M.MovieID = MA.MovieID
+JOIN Actor A ON MA.ActorID = A.ActorID
+WHERE M.MovieRating = (
+    SELECT MAX(MovieRating)
+    FROM Movie
+);
+
 
 -- most popular genre among highly rated movies
 SELECT G.Genre, COUNT(M.MovieID) AS HighRatedCount
@@ -833,22 +830,23 @@ FROM Movie M
 WHERE ReleaseYear >= 2000
 ORDER BY ReleaseYear ASC;
 
--- Return all the info on a specific movieID (left join, nested query) 
-SELECT
-   M.MovieID, M.Title, M.ReleaseYear, M.MovieRating, M.AudienceRec,
-   A.Actor1, A.Actor2, A.Actor3,
-   P.Director,
-   G.Genre
+-- Return all the info on a specific movieID (left join) with all actors listed
+SELECT 
+    M.MovieID,
+    M.Title,
+    M.ReleaseYear,
+    M.MovieRating,
+    GROUP_CONCAT(A.ActorName ORDER BY A.ActorName SEPARATOR ', ') AS ActorNames
 FROM Movie M
-LEFT JOIN Actor A ON M.MovieID = A.MovieID
-LEFT JOIN Production P ON M.MovieID = P.MovieID
-LEFT JOIN Genre G ON M.MovieID = G.MovieID
-WHERE M.MovieID =(
-  SELECT MovieID
-  FROM Movie
-  WHERE MovieID = 11
-);
+LEFT JOIN MovieActor MA ON M.MovieID = MA.MovieID
+LEFT JOIN Actor A ON MA.ActorID = A.ActorID
+WHERE M.MovieID = 12
+GROUP BY M.MovieID, M.Title, M.ReleaseYear, M.MovieRating;
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+NEED TO MODIFY BELOW THIS
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 -- Return movies with a specific MovieRating and above (example will be with <= 5.0) and with a specific audience rec(TV-MA)
 SELECT M.Title, M.ReleaseYear, M.MovieRating, M.AudienceRec
 FROM Movie M
