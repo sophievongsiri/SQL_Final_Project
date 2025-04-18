@@ -34,12 +34,6 @@ CREATE TABLE Production (
     FOREIGN KEY (MovieID) REFERENCES Movie(MovieID) ON DELETE CASCADE
 );
 
-
-drop table Actor;
-drop table Production;
-drop table Genre;
-drop table Movie;
-
 INSERT INTO Movie VALUES
 (1, "A Simple Favor", 2018, 6.8, "R", "English"),
 (2, "A Madea Homecoming", 2020, 5.7, "TV-MA", "English"),
@@ -874,6 +868,15 @@ WHERE M.MovieID IN (
     AND G2.Genre = 'Comedy'
 )
 ORDER BY M.ReleaseYear ASC;
+
+
+--CRUD: DELETE
+
+~To delete tables (drop)
+drop table Actor;
+drop table Production;
+drop table Genre;
+drop table Movie;
 
 #and then this would be in the query: (creates a delte cascade that deletes all references to that movie)
 DELETE FROM Movie WHERE MovieID = 10;
