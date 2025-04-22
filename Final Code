@@ -36,6 +36,20 @@ CREATE TABLE Production (
     FOREIGN KEY (MovieID) REFERENCES Movie(MovieID) ON DELETE CASCADE
 );
 
+INSERT INTO Genre (GenreName) VALUES
+('Comedy'),
+('Drama'),
+('Thriller'),
+('Action'),
+('Romantic Comedy'),
+('Documentary'),
+('Biography'),
+('Adventure'),
+('Horror'),
+('Romance'),
+('Crime'),
+('History');
+
 INSERT INTO Movie VALUES
 (1, "A Simple Favor", 2018, 6.8, "R", "English", 1),
 (2, "A Madea Homecoming", 2020, 5.7, "TV-MA", "English", 2),
@@ -138,20 +152,6 @@ INSERT INTO Movie VALUES
 (99, "The White Helmets", 2016, 7.5, "TV-14", "Arabic", 6),
 (100, "The Ritual", 2017, 6.3, "TV-MA", "English", 9),
 (101, "The Silence", 2019, 5.4, "PG-13", "English", 9);
-
-INSERT INTO Genre (GenreName) VALUES
-('Comedy'),
-('Drama'),
-('Thriller'),
-('Action'),
-('Romantic Comedy'),
-('Documentary'),
-('Biography'),
-('Adventure'),
-('Horror'),
-('Romance'),
-('Crime'),
-('History');
 
 INSERT INTO Production VALUES
 ("Lionsgate", "Paul Feig", 1),
@@ -257,7 +257,6 @@ INSERT INTO Production VALUES
 ("Netflix", "John R. Leonetti", 101);
 
 INSERT INTO Actor VALUES 
-
 ('A1', 'Aaron Eckhart', '1968-03-12'),
 ('A2', 'Aaron Pierre', '1994-06-07'),
 ('A3', 'Abigail Breslin', '1996-04-14'),
@@ -513,7 +512,6 @@ INSERT INTO Actor VALUES
 ('A253', 'Zendaya', '1996-09-01'),
 ('A254', 'Zion Clark', '1997-09-29');
 
-
 INSERT INTO MovieActor values
 (1, 'A16'), (1, 'A28'),(1, 'A86'),
 (2, 'A246'),(2, 'A36'), (2, 'A53'),
@@ -628,15 +626,16 @@ UPDATE Actor
 SET ActorName = 'Adam Sandler' 
 WHERE ActorID = 'A1';
 
--- update director name if there's a change ////////////////////////////////////////////////////////////////
-UPDATE Director 
+-- update director name if there's a change 
+UPDATE Production 
 SET Director = 'Denis Villeneuve' 
-WHERE DirectorID = 'D1';
+WHERE MovieID = 1;
 
 -- update genre name if there's a reclassification
-UPDATE Genre 
-SET Genre = 'Sci-Fi' 
-WHERE MovieID = 10;
+UPDATE Movie
+JOIN Genre ON Genre.GenreName = 'Romance'
+SET Movie.GenreID = Genre.GenreID
+WHERE Movie.Title = 'A Simple Favor';
 
 #Return Netflix Original movies
 select M.Title as "Netflix Originals"
@@ -674,7 +673,6 @@ where M.MovieID = P.MovieID and P.Director in (
     having count(M.MovieID) > 1
 )
 order by P.Director asc;
-
 
 
 #Return oldest movies from each audience recommendation
@@ -781,7 +779,6 @@ ORDER BY M.ReleaseYear ASC;
 
 
 --CRUD: DELETE
-
 ~To delete tables (drop)
 Drop table Production;
 Drop table MovieActor;
@@ -789,9 +786,14 @@ Drop table Actor;
 Drop table Movie;
 Drop table Genre;
 
+~To Delete all tables with drop
+Drop Table Production, MovieActor, Actor, Movie, Genre;
 
-
-#and then this would be in the query: (creates a delte cascade that deletes all references to that movie)
+# ON DELETE CASCADE with MovieID (deletes all references to that movieID, including in production table linked to that movieID)
 DELETE FROM Movie WHERE MovieID = 10;
+
+~Delete cascade based on Movie.Title
+DELETE FROM Movie WHERE Title = 'A Simple Favor';
+
 
     
