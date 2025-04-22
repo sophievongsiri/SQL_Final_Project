@@ -652,16 +652,15 @@ JOIN Actor A ON MA.ActorID = A.ActorID
 WHERE A.ActorName = 'Adam Sandler';
 
 
-#Return movie with highest rating in each genre
-SELECT M.Title, G.Genre, M.MovieRating
+-- Return movie with highest rating in each genre
+SELECT M.Title, G.GenreName, M.MovieRating
 FROM Movie M
-JOIN Genre G ON M.MovieID = G.MovieID
+JOIN Genre G ON M.GenreID = G.GenreID
 JOIN (
-    SELECT G.Genre, MAX(M.MovieRating) AS BestRating
-    FROM Movie M
-    JOIN Genre G ON M.MovieID = G.MovieID
-    GROUP BY G.Genre
-) AS HighestRating ON G.Genre = HighestRating.Genre AND M.MovieRating = HighestRating.MaxRating;
+    SELECT GenreID, MAX(MovieRating) AS BestRating
+    FROM Movie
+    GROUP BY GenreID
+) AS HighestRating ON M.GenreID = HighestRating.GenreID AND M.MovieRating = HighestRating.BestRating;
 
 
 #Return movies that share a director
@@ -721,21 +720,23 @@ WHERE M.MovieRating = (
 );
 
 
--- most popular genre among highly rated movies
-SELECT G.Genre, COUNT(M.MovieID) AS HighRatedCount
+-- Most popular genre among highly rated movies
+SELECT G.GenreName, COUNT(M.MovieID) AS HighRatedCount
 FROM Movie M
-JOIN Genre G ON M.MovieID = G.MovieID
+JOIN Genre G ON M.GenreID = G.GenreID
 WHERE M.MovieRating > 8.0
-GROUP BY G.Genre
+GROUP BY G.GenreName
 ORDER BY HighRatedCount DESC
 LIMIT 10;
+
 
 -- Return movies with specific Genre
 SELECT M.Title
 FROM Movie M
-JOIN Genre G ON M.MovieID = G.MovieID
-WHERE G.Genre = 'Comedy'
+JOIN Genre G ON M.GenreID = G.GenreID
+WHERE G.GenreName = 'Comedy'
 ORDER BY M.Title;
+
 
 -- Return movies that were released from a specifc year and later (ordered in ascending order from oldest to newest release on or after 2000) (NOTE: to order it in descending order just change ASC to DESC)
 SELECT M.Title, M.ReleaseYear
@@ -757,9 +758,6 @@ WHERE M.MovieID = 12
 GROUP BY M.MovieID, M.Title, M.ReleaseYear, M.MovieRating;
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-NEED TO MODIFY BELOW THIS
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
 -- Return movies with a specific MovieRating and above (example will be with <= 5.0) and with a specific audience rec(TV-MA)
 SELECT M.Title, M.ReleaseYear, M.MovieRating, M.AudienceRec
 FROM Movie M
@@ -767,17 +765,17 @@ WHERE M.MovieRating >= 5.0 AND M.AudienceRec = 'TV-MA'
 ORDER BY M.MovieRating DESC;
 
 
--- Return movies that were released before a specicif year and with a specific genre and audienceRec
-SELECT M.Title, M.ReleaseYear, M.MovieRating, M.AudienceRec, G.Genre
+-- Return movies released after 2010 with genre 'Comedy' and audienceRec 'R'
+SELECT M.Title, M.ReleaseYear, M.MovieRating, M.AudienceRec, G.GenreName
 FROM Movie M
-JOIN Genre G ON M.MovieID = G.MovieID
+JOIN Genre G ON M.GenreID = G.GenreID
 WHERE M.MovieID IN (
   SELECT M2.MovieID
   FROM Movie M2
-  JOIN Genre G2 ON M2.MovieID = G2.MovieID
+  JOIN Genre G2 ON M2.GenreID = G2.GenreID
   WHERE M2.ReleaseYear > 2010
     AND M2.AudienceRec = 'R'
-    AND G2.Genre = 'Comedy'
+    AND G2.GenreName = 'Comedy'
 )
 ORDER BY M.ReleaseYear ASC;
 
