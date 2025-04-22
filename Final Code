@@ -2,7 +2,7 @@ CREATE TABLE Genre (
     GenreID     INT PRIMARY KEY AUTO_INCREMENT,
     GenreName   VARCHAR(30) UNIQUE
 ); 
-//Comment: Table Genre must be inserted prior to Movie table due to Forign Key constraints
+#Comment: Table Genre must be inserted prior to Movie table due to Forign Key constraints
 
 CREATE TABLE Movie (
     MovieID         INT PRIMARY KEY,
@@ -651,7 +651,7 @@ JOIN Actor A ON MA.ActorID = A.ActorID
 WHERE A.ActorName = 'Adam Sandler';
 
 
--- Return movie with highest rating in each genre
+#Return movie with highest rating in each genre
 SELECT M.Title, G.GenreName, M.MovieRating
 FROM Movie M
 JOIN Genre G ON M.GenreID = G.GenreID
@@ -662,7 +662,7 @@ JOIN (
 ) AS HighestRating ON M.GenreID = HighestRating.GenreID AND M.MovieRating = HighestRating.BestRating;
 
 
-#Return movies that share a director
+#Return movies that share a director (Sophie)
 select M.Title, P.Director
 from Movie as M, Production as P
 where M.MovieID = P.MovieID and P.Director in (
@@ -675,7 +675,7 @@ where M.MovieID = P.MovieID and P.Director in (
 order by P.Director asc;
 
 
-#Return oldest movies from each audience recommendation
+#Return oldest movies from each audience recommendation (Sophie)
 select M.Title, M.AudienceRec, M.ReleaseYear
 from Movie as M
 where M.ReleaseYear = (
@@ -691,7 +691,7 @@ FROM Movie
 WHERE ReleaseYear = (SELECT MIN(ReleaseYear) FROM Movie)
    OR ReleaseYear = (SELECT MAX(ReleaseYear) FROM Movie);
    
--- directors with the highest avg movie ratings   
+-- directors with the highest avg movie ratings (Hannah)
 SELECT P.Director, ROUND(AVG(M.MovieRating), 2) AS AvgRating, COUNT(M.MovieID) AS MovieCount
 FROM Movie M
 JOIN Production P ON M.MovieID = P.MovieID
@@ -707,7 +707,7 @@ GROUP BY A.ActorName
 ORDER BY AppearanceCount DESC
 LIMIT 1;
 
--- actors in the most high-rated movies
+-- actors in the most high-rated movies (Hannah)
 SELECT A.ActorName, M.Title, M.MovieRating
 FROM Movie M
 JOIN MovieActor MA ON M.MovieID = MA.MovieID
@@ -718,7 +718,7 @@ WHERE M.MovieRating = (
 );
 
 
--- Most popular genre among highly rated movies
+-- Most popular genre among highly rated movies (Hannah)
 SELECT G.GenreName, COUNT(M.MovieID) AS HighRatedCount
 FROM Movie M
 JOIN Genre G ON M.GenreID = G.GenreID
@@ -742,7 +742,7 @@ FROM Movie M
 WHERE ReleaseYear >= 2000
 ORDER BY ReleaseYear ASC;
 
--- Return all the info on a specific movieID (left join) with all actors listed
+-- Return all the info on a specific movieID (left join) with all actors listed (Kim)
 SELECT 
     M.MovieID,
     M.Title,
@@ -763,7 +763,7 @@ WHERE M.MovieRating >= 5.0 AND M.AudienceRec = 'TV-MA'
 ORDER BY M.MovieRating DESC;
 
 
--- Return movies released after 2010 with genre 'Comedy' and audienceRec 'R'
+-- Return movies released after 2010 with genre 'Comedy' and audienceRec 'R' (Kim)
 SELECT M.Title, M.ReleaseYear, M.MovieRating, M.AudienceRec, G.GenreName
 FROM Movie M
 JOIN Genre G ON M.GenreID = G.GenreID
@@ -778,24 +778,24 @@ WHERE M.MovieID IN (
 ORDER BY M.ReleaseYear ASC;
 
 
---CRUD: DELETE
-~To delete tables (drop)
+-- CRUD: DELETE
+-- To delete tables (drop)
 Drop table Production;
 Drop table MovieActor;
 Drop table Actor;
 Drop table Movie;
 Drop table Genre;
 
-~To Delete all tables with drop
+-- To Delete all tables with drop
 Drop Table Production, MovieActor, Actor, Movie, Genre;
 
 # ON DELETE CASCADE with MovieID (deletes all references to that movieID, including in production table linked to that movieID)
 DELETE FROM Movie WHERE MovieID = 10;
 
-~Delete cascade based on Movie.Title
+-- Delete cascade based on Movie.Title
 DELETE FROM Movie WHERE Title = 'A Simple Favor';
 
-~Delete based on genreID in movie table
+-- Delete based on genreID in movie table
  DELETE FROM Movie 
 WHERE GenreID = 1;
    
