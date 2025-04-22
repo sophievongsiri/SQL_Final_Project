@@ -795,5 +795,7 @@ DELETE FROM Movie WHERE MovieID = 10;
 ~Delete cascade based on Movie.Title
 DELETE FROM Movie WHERE Title = 'A Simple Favor';
 
-
-    
+~Delete based on genreID in movie table
+ DELETE FROM Movie 
+WHERE GenreID = 1;
+   
