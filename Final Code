@@ -784,10 +784,10 @@ ORDER BY M.ReleaseYear ASC;
 
 ~To delete tables (drop)
 Drop table Production;
-Drop table Genre;
 Drop table MovieActor;
 Drop table Actor;
 Drop table Movie;
+Drop table Genre;
 
 
 
