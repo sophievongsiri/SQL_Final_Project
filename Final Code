@@ -756,7 +756,7 @@ WHERE M.MovieID = 12
 GROUP BY M.MovieID, M.Title, M.ReleaseYear, M.MovieRating;
 
 
--- Return movies with a specific MovieRating and above (example will be with <= 5.0) and with a specific audience rec(TV-MA)
+-- Return movies with a specific MovieRating and above (example will be with >= 5.0) and with a specific audience rec(TV-MA)
 SELECT M.Title, M.ReleaseYear, M.MovieRating, M.AudienceRec
 FROM Movie M
 WHERE M.MovieRating >= 5.0 AND M.AudienceRec = 'TV-MA'
