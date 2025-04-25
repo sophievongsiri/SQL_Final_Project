@@ -768,12 +768,12 @@ SELECT M.Title, M.ReleaseYear, M.MovieRating, M.AudienceRec, G.GenreName
 FROM Movie M
 JOIN Genre G ON M.GenreID = G.GenreID
 WHERE M.MovieID IN (
-  SELECT M2.MovieID
-  FROM Movie M2
-  JOIN Genre G2 ON M2.GenreID = G2.GenreID
-  WHERE M2.ReleaseYear > 2010
-    AND M2.AudienceRec = 'R'
-    AND G2.GenreName = 'Comedy'
+  SELECT M.MovieID
+  FROM Movie M
+  JOIN Genre G ON M.GenreID = G.GenreID
+  WHERE M.ReleaseYear > 2010
+    AND M.AudienceRec = 'R'
+    AND G.GenreName = 'Comedy'
 )
 ORDER BY M.ReleaseYear ASC;
 
