@@ -798,4 +798,8 @@ DELETE FROM Movie WHERE Title = 'A Simple Favor';
 -- Delete based on genreID in movie table
  DELETE FROM Movie 
 WHERE GenreID = 1;
+
+--This was added later: Using ON DELETE SET NULL used in movie table with GenreID as foreign key.
+--comment: when a genre is deleted form genre table like this, its corresponding GenreID will be set to NULL in the Movie table.
+DELETE FROM Genre WHERE GenreName= 'Romance';
    
